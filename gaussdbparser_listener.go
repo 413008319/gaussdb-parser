@@ -2962,6 +2962,9 @@ type GaussdbParserListener interface {
 	// EnterPackage_name is called when entering the package_name production.
 	EnterPackage_name(c *Package_nameContext)
 
+	// EnterAlter_package is called when entering the alter_package production.
+	EnterAlter_package(c *Alter_packageContext)
+
 	// EnterCreate_package is called when entering the create_package production.
 	EnterCreate_package(c *Create_packageContext)
 
@@ -3054,6 +3057,9 @@ type GaussdbParserListener interface {
 
 	// EnterDatabase_link_using_opt is called when entering the database_link_using_opt production.
 	EnterDatabase_link_using_opt(c *Database_link_using_optContext)
+
+	// EnterGaussdb_alter_database_link is called when entering the gaussdb_alter_database_link production.
+	EnterGaussdb_alter_database_link(c *Gaussdb_alter_database_linkContext)
 
 	// EnterGaussdb_create_directory is called when entering the gaussdb_create_directory production.
 	EnterGaussdb_create_directory(c *Gaussdb_create_directoryContext)
@@ -6109,6 +6115,9 @@ type GaussdbParserListener interface {
 	// ExitPackage_name is called when exiting the package_name production.
 	ExitPackage_name(c *Package_nameContext)
 
+	// ExitAlter_package is called when exiting the alter_package production.
+	ExitAlter_package(c *Alter_packageContext)
+
 	// ExitCreate_package is called when exiting the create_package production.
 	ExitCreate_package(c *Create_packageContext)
 
@@ -6201,6 +6210,9 @@ type GaussdbParserListener interface {
 
 	// ExitDatabase_link_using_opt is called when exiting the database_link_using_opt production.
 	ExitDatabase_link_using_opt(c *Database_link_using_optContext)
+
+	// ExitGaussdb_alter_database_link is called when exiting the gaussdb_alter_database_link production.
+	ExitGaussdb_alter_database_link(c *Gaussdb_alter_database_linkContext)
 
 	// ExitGaussdb_create_directory is called when exiting the gaussdb_create_directory production.
 	ExitGaussdb_create_directory(c *Gaussdb_create_directoryContext)

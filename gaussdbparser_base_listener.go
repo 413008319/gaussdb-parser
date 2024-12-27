@@ -6148,6 +6148,12 @@ func (s *BaseGaussdbParserListener) EnterPackage_name(ctx *Package_nameContext) 
 // ExitPackage_name is called when production package_name is exited.
 func (s *BaseGaussdbParserListener) ExitPackage_name(ctx *Package_nameContext) {}
 
+// EnterAlter_package is called when production alter_package is entered.
+func (s *BaseGaussdbParserListener) EnterAlter_package(ctx *Alter_packageContext) {}
+
+// ExitAlter_package is called when production alter_package is exited.
+func (s *BaseGaussdbParserListener) ExitAlter_package(ctx *Alter_packageContext) {}
+
 // EnterCreate_package is called when production create_package is entered.
 func (s *BaseGaussdbParserListener) EnterCreate_package(ctx *Create_packageContext) {}
 
@@ -6354,6 +6360,14 @@ func (s *BaseGaussdbParserListener) EnterDatabase_link_using_opt(ctx *Database_l
 
 // ExitDatabase_link_using_opt is called when production database_link_using_opt is exited.
 func (s *BaseGaussdbParserListener) ExitDatabase_link_using_opt(ctx *Database_link_using_optContext) {
+}
+
+// EnterGaussdb_alter_database_link is called when production gaussdb_alter_database_link is entered.
+func (s *BaseGaussdbParserListener) EnterGaussdb_alter_database_link(ctx *Gaussdb_alter_database_linkContext) {
+}
+
+// ExitGaussdb_alter_database_link is called when production gaussdb_alter_database_link is exited.
+func (s *BaseGaussdbParserListener) ExitGaussdb_alter_database_link(ctx *Gaussdb_alter_database_linkContext) {
 }
 
 // EnterGaussdb_create_directory is called when production gaussdb_create_directory is entered.

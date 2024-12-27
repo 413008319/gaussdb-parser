@@ -859,6 +859,10 @@ PACKAGE
    : 'PACKAGE'
    ;
 
+SPECIFICATION
+   : 'SPECIFICATION'
+   ;
+
 DATA_P
    : 'DATA'
    ;
@@ -1057,6 +1061,10 @@ IMMEDIATE
 
 IMMUTABLE
    : 'IMMUTABLE'
+   ;
+
+COMPILE
+   : 'COMPILE'
    ;
 
 IMPLICIT_P
@@ -1416,6 +1424,30 @@ PURGE
 
 VISIBLE
    : 'VISIBLE'
+   ;
+
+GSIVALID
+   : 'GSIVALID'
+   ;
+
+GSIREADY
+   : 'GSIREADY'
+   ;
+
+GSIUSABLE
+   : 'GSIUSABLE'
+   ;
+
+GSIGETXID
+   : 'GSIGETXID'
+   ;
+
+GSIMERGE
+   : 'GSIMERGE'
+   ;
+
+GSISWITCH
+   : 'GSISWITCH'
    ;
 
 INVISIBLE

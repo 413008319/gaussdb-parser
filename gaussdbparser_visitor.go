@@ -2962,6 +2962,9 @@ type GaussdbParserVisitor interface {
 	// Visit a parse tree produced by GaussdbParser#package_name.
 	VisitPackage_name(ctx *Package_nameContext) interface{}
 
+	// Visit a parse tree produced by GaussdbParser#alter_package.
+	VisitAlter_package(ctx *Alter_packageContext) interface{}
+
 	// Visit a parse tree produced by GaussdbParser#create_package.
 	VisitCreate_package(ctx *Create_packageContext) interface{}
 
@@ -3054,6 +3057,9 @@ type GaussdbParserVisitor interface {
 
 	// Visit a parse tree produced by GaussdbParser#database_link_using_opt.
 	VisitDatabase_link_using_opt(ctx *Database_link_using_optContext) interface{}
+
+	// Visit a parse tree produced by GaussdbParser#gaussdb_alter_database_link.
+	VisitGaussdb_alter_database_link(ctx *Gaussdb_alter_database_linkContext) interface{}
 
 	// Visit a parse tree produced by GaussdbParser#gaussdb_create_directory.
 	VisitGaussdb_create_directory(ctx *Gaussdb_create_directoryContext) interface{}

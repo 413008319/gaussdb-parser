@@ -3947,6 +3947,10 @@ func (v *BaseGaussdbParserVisitor) VisitPackage_name(ctx *Package_nameContext) i
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseGaussdbParserVisitor) VisitAlter_package(ctx *Alter_packageContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseGaussdbParserVisitor) VisitCreate_package(ctx *Create_packageContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -4068,6 +4072,10 @@ func (v *BaseGaussdbParserVisitor) VisitDatabase_link_using(ctx *Database_link_u
 }
 
 func (v *BaseGaussdbParserVisitor) VisitDatabase_link_using_opt(ctx *Database_link_using_optContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseGaussdbParserVisitor) VisitGaussdb_alter_database_link(ctx *Gaussdb_alter_database_linkContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

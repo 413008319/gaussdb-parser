@@ -24,7 +24,7 @@ stmtblock
    ;
 
 stmtmulti
-   : (stmt SEMI?)*
+   : (stmt SEMI? SLASH?)*
    ;
 
 stmt
@@ -81,6 +81,7 @@ stmt
    | createfunctionstmt
    | create_package
    | create_package_body
+   | alter_package
    | creategroupstmt
    | creatematviewstmt
    | create_inc_mat_viewstmt
@@ -167,6 +168,7 @@ stmt
    | gaussdb_create_client_master_key
    | gaussdb_create_column_encryption_key
    | gaussdb_create_database_link
+   | gaussdb_alter_database_link
    | gaussdb_create_directory
    | gaussdb_create_masking_policy
    | gaussdb_create_node
@@ -1795,6 +1797,7 @@ privilege
    | CREATE opt_column_list?
    | colid opt_column_list?
    | colid ANY colid?
+   | (CREATE|DROP|ALTER) PUBLIC? DATABASE LINK
    ;
 
 privilege_target
@@ -2058,6 +2061,7 @@ common_func_opt_item
    | RETURNS NULL_P ON NULL_P INPUT_P
    | STRICT_P
    | IMMUTABLE
+   | COMPILE
    | STABLE
    | VOLATILE
    | EXTERNAL SECURITY DEFINER
@@ -2413,6 +2417,8 @@ alterownerstmt
    | ALTER EVENT TRIGGER name OWNER TO rolespec
    | ALTER PUBLICATION name OWNER TO rolespec
    | ALTER SUBSCRIPTION name OWNER TO rolespec
+   | ALTER SYNONYM name OWNER TO rolespec
+   | ALTER PACKAGE name OWNER TO rolespec
    ;
 
 createpublicationstmt
@@ -2882,7 +2888,7 @@ merge_delete_clause
    ;
 
 deletestmt
-   : opt_with_clause? DELETE_P (FROM relation_expr_opt_alias | gaussdb_from_clause) using_clause? where_or_current_clause? gaussdb_sort_clause? gaussdb_limit_clause? returning_clause?
+   : opt_with_clause? DELETE_P (FROM? relation_expr_opt_alias | gaussdb_from_clause) using_clause? where_or_current_clause? gaussdb_sort_clause? gaussdb_limit_clause? returning_clause?
    ;
 
 using_clause
@@ -4098,11 +4104,11 @@ file_name
    ;
 
 func_name
-   : builtin_function_name
-   | type_function_name
-   | colid indirection
-   | LEFT
-   | RIGHT
+   : builtin_function_name (Operator link_name)?
+   | type_function_name (Operator link_name)?
+   | colid indirection (Operator link_name)?
+   | LEFT (Operator link_name)?
+   | RIGHT (Operator link_name)?
    ;
 
 aexprconst
@@ -4332,6 +4338,7 @@ unreserved_keyword
    | IF_P
    | IMMEDIATE
    | IMMUTABLE
+   | COMPILE
    | IMPLICIT_P
    | IMPORT_P
    | INCLUDE
@@ -5156,10 +5163,10 @@ opt_return_result
    //RAISE ;
 
 stmt_raise
-   : RAISE opt_stmt_raise_level? sconst opt_raise_list? opt_raise_using? SEMI
-   | RAISE opt_stmt_raise_level? identifier opt_raise_using? SEMI
-   | RAISE opt_stmt_raise_level? SQLSTATE sconst opt_raise_using? SEMI
-   | RAISE opt_stmt_raise_level? opt_raise_using? SEMI
+   : RAISE opt_stmt_raise_level? sconst opt_raise_list? opt_raise_using? SEMI?
+   | RAISE opt_stmt_raise_level? identifier opt_raise_using? SEMI?
+   | RAISE opt_stmt_raise_level? SQLSTATE sconst opt_raise_using? SEMI?
+   | RAISE opt_stmt_raise_level? opt_raise_using? SEMI?
    | RAISE
    ;
 
@@ -5557,7 +5564,7 @@ gaussdb_sort_clause
    ;
 
 gaussdb_from_clause
-   : FROM from_list
+   : FROM? from_list
    ;
 
 gaussdb_insert_when_clause
@@ -5610,6 +5617,14 @@ gaussdb_comment
 gaussdb_alter_index_ops_set
     : gaussdb_rebuild_clause
     | UNUSABLE
+    | GSIVALID
+    | GSIREADY
+    | GSIUSABLE
+    | VISIBLE
+    | INVISIBLE
+    | GSIGETXID
+    | GSIMERGE
+    | GSISWITCH
     | gaussdb_alter_index_partitioning
     ;
 
@@ -5798,7 +5813,7 @@ label_declaration
     ;
 
 seq_of_declare_specs
-    : declare_spec+
+    : declare_spec*
     ;
 
 declare_spec
@@ -5978,6 +5993,7 @@ plsql_statement
     | loop_statement
     | forall_statement
     | null_statement
+    | stmt_raise
     | raise_statement
     | return_statement
     | case_statement
@@ -6389,6 +6405,10 @@ anonymous_block
 // 包对象
 package_name : colid indirection?;
 
+alter_package
+    : ALTER PACKAGE package_name COMPILE (PACKAGE | BODY | SPECIFICATION)?
+    ;
+
 create_package
     : CREATE (OR REPLACE)?  PACKAGE package_name invoker_rights_clause? (
         IS
@@ -6544,6 +6564,17 @@ database_link_using:
 
 database_link_using_opt:
     identifier EQUAL? a_expr
+;
+
+
+
+gaussdb_alter_database_link
+    : ALTER  PUBLIC? DATABASE LINK link_name (
+        CONNECT TO (
+            CURRENT_USER
+            | user_object_name IDENTIFIED BY password_value
+        )
+    )* database_link_using?
 ;
 
 gaussdb_create_directory
