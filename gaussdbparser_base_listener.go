@@ -4248,6 +4248,12 @@ func (s *BaseGaussdbParserListener) EnterLink_name(ctx *Link_nameContext) {}
 // ExitLink_name is called when production link_name is exited.
 func (s *BaseGaussdbParserListener) ExitLink_name(ctx *Link_nameContext) {}
 
+// EnterAt_link_name is called when production at_link_name is entered.
+func (s *BaseGaussdbParserListener) EnterAt_link_name(ctx *At_link_nameContext) {}
+
+// ExitAt_link_name is called when production at_link_name is exited.
+func (s *BaseGaussdbParserListener) ExitAt_link_name(ctx *At_link_nameContext) {}
+
 // EnterName_list is called when production name_list is entered.
 func (s *BaseGaussdbParserListener) EnterName_list(ctx *Name_listContext) {}
 

@@ -4080,11 +4080,15 @@ qualified_name_list
    ;
 
 qualified_name
-   : colid indirection? (Operator link_name)?
+   : colid indirection? at_link_name?
    ;
 
 link_name
    : any_name
+   ;
+
+at_link_name
+   : AT_SIGN any_name
    ;
 
 name_list
@@ -4104,11 +4108,11 @@ file_name
    ;
 
 func_name
-   : builtin_function_name (Operator link_name)?
-   | type_function_name (Operator link_name)?
-   | colid indirection (Operator link_name)?
-   | LEFT (Operator link_name)?
-   | RIGHT (Operator link_name)?
+   : builtin_function_name at_link_name?
+   | type_function_name at_link_name?
+   | colid indirection at_link_name?
+   | LEFT at_link_name?
+   | RIGHT at_link_name?
    ;
 
 aexprconst

@@ -2059,6 +2059,9 @@ type GaussdbParserListener interface {
 	// EnterLink_name is called when entering the link_name production.
 	EnterLink_name(c *Link_nameContext)
 
+	// EnterAt_link_name is called when entering the at_link_name production.
+	EnterAt_link_name(c *At_link_nameContext)
+
 	// EnterName_list is called when entering the name_list production.
 	EnterName_list(c *Name_listContext)
 
@@ -5211,6 +5214,9 @@ type GaussdbParserListener interface {
 
 	// ExitLink_name is called when exiting the link_name production.
 	ExitLink_name(c *Link_nameContext)
+
+	// ExitAt_link_name is called when exiting the at_link_name production.
+	ExitAt_link_name(c *At_link_nameContext)
 
 	// ExitName_list is called when exiting the name_list production.
 	ExitName_list(c *Name_listContext)

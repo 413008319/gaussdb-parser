@@ -144,6 +144,8 @@ EQUALS_GREATER
    : '=>'
    ;
 
+AT_SIGN : '@';
+
 GREATER_EQUALS
    : '>='
    ;
@@ -205,7 +207,7 @@ OperatorEndingWithPlusMinus
    // by the operator rules above.
 
 fragment OperatorCharacter
-   : [*<>=~!@%^&|`?#]
+   : [*<>=~!%^&|`?#]
    ;
    // these are the operator characters that don't count towards one ending with + or -
 
@@ -2958,7 +2960,6 @@ PARALLEL_ENABLE : 'PARALLEL_ENABLE';
 ACCESSIBLE : 'ACCESSIBLE';
 PIPELINED : 'PIPELINED';
 RESULT_CACHE : 'RESULT_CACHE';
-AT_SIGN : '@';
 RELIES_ON : 'RELIES_ON';
 NAN : 'NAN';
 PRESENT : 'PRESENT';

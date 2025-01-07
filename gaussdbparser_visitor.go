@@ -2059,6 +2059,9 @@ type GaussdbParserVisitor interface {
 	// Visit a parse tree produced by GaussdbParser#link_name.
 	VisitLink_name(ctx *Link_nameContext) interface{}
 
+	// Visit a parse tree produced by GaussdbParser#at_link_name.
+	VisitAt_link_name(ctx *At_link_nameContext) interface{}
+
 	// Visit a parse tree produced by GaussdbParser#name_list.
 	VisitName_list(ctx *Name_listContext) interface{}
 

@@ -2743,6 +2743,10 @@ func (v *BaseGaussdbParserVisitor) VisitLink_name(ctx *Link_nameContext) interfa
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseGaussdbParserVisitor) VisitAt_link_name(ctx *At_link_nameContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseGaussdbParserVisitor) VisitName_list(ctx *Name_listContext) interface{} {
 	return v.VisitChildren(ctx)
 }
