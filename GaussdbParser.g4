@@ -6660,7 +6660,7 @@ gaussdb_create_security_label:
 ;
 
 gaussdb_create_synonym:
-    CREATE opt_or_replace? SYNONYM  synonym_name FOR a_expr
+    CREATE opt_or_replace? PUBLIC? SYNONYM  synonym_name FOR a_expr
 ;
 
 synonym_name
