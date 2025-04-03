@@ -151,7 +151,6 @@ stmt
    | rulestmt
    | seclabelstmt
    | selectstmt
-   | transactionstmt
    | truncatestmt
    | unlistenstmt
    | updatestmt
@@ -162,6 +161,7 @@ stmt
    | viewstmt
    | plsqlconsolecommand
    | anonymous_block
+   | transactionstmt
    | gaussdb_cleanconnection
    | gaussdb_createpolicystmt
    | gaussdb_createbarrierstmt
@@ -1890,7 +1890,7 @@ defacl_privilege_target
 indexstmt
    : CREATE GLOBAL? opt_unique? INDEX opt_concurrently? (IF_P NOT EXISTS)? gaussdb_index_name ON relation_expr access_method_clause? OPEN_PAREN index_params CLOSE_PAREN
         (GLOBAL
-        | LOCAL gaussdb_index_partition_list)?
+        | LOCAL gaussdb_index_partition_list?)?
         opt_include? gaussdb_opt_distribute* opt_reloptions? opttablespace? gaussdb_comment_list (VISIBLE | INVISIBLE)? where_clause?
    ;
 
